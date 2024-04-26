@@ -37,6 +37,8 @@ public class SeguridadController {
         boolean respuesta = true;
         try{
             Usuario usuario = new Usuario();
+            usuario.setNombres(usuarioRequest.getNombres());
+            usuario.setApellidos(usuarioRequest.getApellidos());
             if(usuarioRequest.getIdusuario() > 0){
                 usuario.setIdusuario(usuarioRequest.getIdusuario());
                 usuario.setActivo(usuarioRequest.getActivo());
@@ -46,10 +48,6 @@ public class SeguridadController {
                 usuario.setEmail(usuarioRequest.getEmail());
                 iUsuarioService.guardarUsuario(usuario);
             }
-            usuario.setNombres(usuarioRequest.getNombres());
-            usuario.setApellidos(usuarioRequest.getApellidos());
-            usuario.setActivo(usuarioRequest.getActivo());
-            iUsuarioService.guardarUsuario(usuario);
         } catch(Exception ex){
             mensaje = "Usuario no registrado, error en la BD";
             respuesta = false;
@@ -58,6 +56,7 @@ public class SeguridadController {
     }
 
     @GetMapping("/usuario/lista")
+    @ResponseBody
     public List<Usuario> listarUsuarios(){
         return iUsuarioService.listarUsuarios();
     }
