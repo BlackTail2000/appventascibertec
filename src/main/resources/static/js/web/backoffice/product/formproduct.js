@@ -11,3 +11,7 @@ $(document).on("click", ".btnactualizar", function(){
     $("#hddprodcod").val($(this).attr("data-prodcod"));
     $("#modalproduct").modal("show");
 })
+
+function listarCboCategorySupplier(idCategory, idSupplier){
+
+}
