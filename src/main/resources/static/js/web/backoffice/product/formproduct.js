@@ -5,6 +5,8 @@ $(document).on("click", "#btnagregar", function(){
     $("#cbocategory").empty();
     $("#cbosupplier").empty();
     listarCboCategorySupplier(0, 0);
+    $("#switchproducto").hide();
+    $("#cbdiscontinued").prop("checked", false);
     $("#modalproduct").modal("show");
 })
 
@@ -16,6 +18,12 @@ $(document).on("click", ".btnactualizar", function(){
     $("#cbosupplier").empty();
     listarCboCategorySupplier($(this).attr("data-prodcateg"),
                 $(this).attr("data-prodsupp"));
+    $("#switchproducto").show();
+    if($(this).attr("data-proddiscont") === "true"){
+        $("#cbdiscontinued").prop("checked", true);
+    } else {
+        $("#cbdiscontinued").prop("checked", false);
+    }
     $("#modalproduct").modal("show");
 })
 
