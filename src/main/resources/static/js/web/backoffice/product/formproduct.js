@@ -65,7 +65,16 @@ function listarProductos(){
                         `<td>${value.unitprice}</td>` +
                         `<td>${value.category.categoryname}</td>` +
                         `<td>${value.supplier.companyname}</td>` +
-                        `<td></td>` +
+                        `<td>` +
+                            `<button type='button' class='btn btn-primary btnactualizar' ` +
+                                     `data-prodcod="${value.productid}" ` +
+                                     `data-prodname="${value.productname}" ` +
+                                     `data-produnit="${value.unitprice}" ` +
+                                     `data-prodcateg="${value.category.categoryid}" ` +
+                                     `data-prodsupp="${value.supplier.supplierid}" ` +
+                                     `data-proddiscont="${value.discontinued}">Actualizar` +
+                            `</button>` +
+                        `</td>` +
                     `</tr>`
                 );
             });
