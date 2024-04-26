@@ -45,4 +45,12 @@ public class UsuarioService implements IUsuarioService {
         usuario.setPassword("");
         return usuario;
     }
+
+    @Override
+    public void actualizarUsuario(Usuario usuario) {
+        usuarioRepository.actualizarUsuario(
+                usuario.getNombres(), usuario.getApellidos(),
+                usuario.getActivo(), usuario.getIdusuario()
+        );
+    }
 }

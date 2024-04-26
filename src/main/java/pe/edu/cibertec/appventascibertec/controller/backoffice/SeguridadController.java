@@ -9,6 +9,8 @@ import pe.edu.cibertec.appventascibertec.model.dto.request.UsuarioRequest;
 import pe.edu.cibertec.appventascibertec.model.dto.response.ResultadoResponse;
 import pe.edu.cibertec.appventascibertec.service.IUsuarioService;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/seguridad")
@@ -37,8 +39,12 @@ public class SeguridadController {
             Usuario usuario = new Usuario();
             if(usuarioRequest.getIdusuario() > 0){
                 usuario.setIdusuario(usuarioRequest.getIdusuario());
+                usuario.setActivo(usuarioRequest.getActivo());
+                iUsuarioService.actualizarUsuario(usuario);
             } else {
-                usuario.setPassword(usuarioRequest.getPassword());
+                usuario.setNomusuario(usuarioRequest.getNomusuario());
+                usuario.setEmail(usuarioRequest.getEmail());
+                iUsuarioService.guardarUsuario(usuario);
             }
             usuario.setNombres(usuarioRequest.getNombres());
             usuario.setApellidos(usuarioRequest.getApellidos());
@@ -49,5 +55,10 @@ public class SeguridadController {
             respuesta = false;
         }
         return ResultadoResponse.builder().mensaje(mensaje).respuesta(respuesta).build();
+    }
+
+    @GetMapping("/usuario/lista")
+    public List<Usuario> listarUsuarios(){
+        return iUsuarioService.listarUsuarios();
     }
 }
